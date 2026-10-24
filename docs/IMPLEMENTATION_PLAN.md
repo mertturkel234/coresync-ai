@@ -11,7 +11,7 @@ Complexity: S, M, L. Tasks are reviewable feature units, not trivial chores.
 - [x] Phase 1 — Monorepo and infrastructure
 - [x] Phase 2 — Data model and access control
 - [x] Phase 3 — Documentation ingestion
-- [ ] Phase 4 — AI orchestration and retrieval
+- [x] Phase 4 — AI orchestration and retrieval
 - [ ] Phase 5 — Sandbox credentials and controlled test execution
 - [ ] Phase 6 — Frontend implementation
 - [ ] Phase 7 — End-to-end integration
@@ -55,10 +55,10 @@ Complexity: S, M, L. Tasks are reviewable feature units, not trivial chores.
 
 | ID | Title | Description | Depends | Files | Acceptance | Tests | Size | Status |
 |----|-------|-------------|---------|-------|------------|-------|------|--------|
-| AI-001 | Provider abstraction | `LLMProvider`, `OfflineProvider`, and `OpenAICompatibleProvider` with timeouts and error mapping. | INFRA-001 | `ai/providers.py` | Provider failures map to a typed error. Offline mode is labelled. | `test_providers.py` (mocked transport) | M | ☐ |
-| AI-002 | Retrieval | Tenant- and project-filtered lexical retrieval with a sufficiency threshold. | DOCS-003 | `ai/retrieval.py` | The right endpoint ranks first, and other tenants' chunks never appear. | `test_retrieval.py` | M | ☐ |
-| AI-003 | Grounded Q&A | Context builder with injection-safe delimiting, references, and an insufficient-evidence path. | AI-001, AI-002 | `services/chat.py`, `api/v1/sessions.py` | Answers cite refs. Unknown topics get an explicit "not documented" reply. | `test_chat.py` | L | ☐ |
-| AI-004 | Python code generation | A request plan from an endpoint, a code template with placeholders, and a persisted `CodeExample`. | AI-002 | `ai/codegen.py` | Code contains no real secrets. The plan is validated. No code is produced for missing endpoints. | `test_codegen.py` | M | ☐ |
+| AI-001 | Provider abstraction | `LLMProvider`, `OfflineProvider`, and `OpenAICompatibleProvider` with timeouts and error mapping. | INFRA-001 | `ai/providers.py` | Provider failures map to a typed error. Offline mode is labelled. | `test_providers.py` (mocked transport) | M | ☑ |
+| AI-002 | Retrieval | Tenant- and project-filtered lexical retrieval with a sufficiency threshold. | DOCS-003 | `ai/retrieval.py` | The right endpoint ranks first, and other tenants' chunks never appear. | `test_retrieval.py` | M | ☑ |
+| AI-003 | Grounded Q&A | Context builder with injection-safe delimiting, references, and an insufficient-evidence path. | AI-001, AI-002 | `services/chat.py`, `api/v1/sessions.py` | Answers cite refs. Unknown topics get an explicit "not documented" reply. | `test_chat.py` | L | ☑ |
+| AI-004 | Python code generation | A request plan from an endpoint, a code template with placeholders, and a persisted `CodeExample`. | AI-002 | `ai/codegen.py` | Code contains no real secrets. The plan is validated. No code is produced for missing endpoints. | `test_codegen.py` | M | ☑ |
 
 ## Phase 5 — Sandbox credentials and controlled test execution
 
