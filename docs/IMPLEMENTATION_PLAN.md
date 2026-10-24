@@ -8,7 +8,7 @@ Complexity: S, M, L. Tasks are reviewable feature units, not trivial chores.
 ## Phase checklist
 
 - [x] Phase 0 — Inspection and planning
-- [ ] Phase 1 — Monorepo and infrastructure
+- [x] Phase 1 — Monorepo and infrastructure
 - [ ] Phase 2 — Data model and access control
 - [ ] Phase 3 — Documentation ingestion
 - [ ] Phase 4 — AI orchestration and retrieval
@@ -27,11 +27,11 @@ Complexity: S, M, L. Tasks are reviewable feature units, not trivial chores.
 
 | ID | Title | Description | Depends | Files | Acceptance | Tests | Size | Status |
 |----|-------|-------------|---------|-------|------------|-------|------|--------|
-| INFRA-001 | Backend skeleton and health | FastAPI app factory, settings, request-id middleware, `/health/live` and `/health/ready` with real DB and Redis checks. | DOCS-000 | `services/api/app/{main,core,db}` | Health returns correct status for DB and Redis (ok, error, or not_configured). | `tests/test_health.py` | M | ☐ |
-| INFRA-002 | Tooling | Ruff config, pytest config, Makefile, `.env.example`. | INFRA-001 | `pyproject.toml`, `Makefile`, `.env.example` | `make lint test` pass. | lint and test run | S | ☐ |
-| INFRA-003 | Frontend skeleton | Next.js App Router, strict TypeScript, Tailwind, shadcn/ui, dark theme, Vitest. | DOCS-000 | `apps/web` | `npm run dev`, `build`, `typecheck`, `lint`, and `test` pass. | Vitest smoke test | M | ☐ |
-| INFRA-004 | Docker Compose | Postgres (pgvector image), Redis, api, web, optional PgAdmin profile, Dockerfiles. | INFRA-001, INFRA-003 | `docker-compose.yml`, Dockerfiles | `docker compose config` validates. A full `up` is verified only if Docker is available. | `compose config` | M | ☐ |
-| INFRA-005 | README and dev docs | Setup instructions, commands, and troubleshooting. | INFRA-002 | `README.md`, `docs/DEVELOPMENT.md` | A fresh developer can follow the steps. | Follow steps | S | ☐ |
+| INFRA-001 | Backend skeleton and health | FastAPI app factory, settings, request-id middleware, `/health/live` and `/health/ready` with real DB and Redis checks. | DOCS-000 | `services/api/app/{main,core,db}` | Health returns correct status for DB and Redis (ok, error, or not_configured). | `tests/test_health.py` | M | ☑ |
+| INFRA-002 | Tooling | Ruff config, pytest config, Makefile, `.env.example`. | INFRA-001 | `pyproject.toml`, `Makefile`, `.env.example` | `make lint test` pass. | lint and test run | S | ☑ |
+| INFRA-003 | Frontend skeleton | Next.js App Router, strict TypeScript, Tailwind, shadcn/ui, dark theme, Vitest. | DOCS-000 | `apps/web` | `npm run dev`, `build`, `typecheck`, `lint`, and `test` pass. | Vitest smoke test | M | ☑ |
+| INFRA-004 | Docker Compose | Postgres (pgvector image), Redis, api, web, optional PgAdmin profile, Dockerfiles. | INFRA-001, INFRA-003 | `docker-compose.yml`, Dockerfiles | `docker compose config` validates. A full `up` is verified only if Docker is available. | `compose config` | M | ◐ (compose file written; not run, Docker unavailable) |
+| INFRA-005 | README and dev docs | Setup instructions, commands, and troubleshooting. | INFRA-002 | `README.md`, `docs/DEVELOPMENT.md` | A fresh developer can follow the steps. | Follow steps | S | ☑ |
 
 ## Phase 2 — Data model and access control
 
