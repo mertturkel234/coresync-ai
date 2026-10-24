@@ -10,7 +10,7 @@ Complexity: S, M, L. Tasks are reviewable feature units, not trivial chores.
 - [x] Phase 0 — Inspection and planning
 - [x] Phase 1 — Monorepo and infrastructure
 - [x] Phase 2 — Data model and access control
-- [ ] Phase 3 — Documentation ingestion
+- [x] Phase 3 — Documentation ingestion
 - [ ] Phase 4 — AI orchestration and retrieval
 - [ ] Phase 5 — Sandbox credentials and controlled test execution
 - [ ] Phase 6 — Frontend implementation
@@ -46,10 +46,10 @@ Complexity: S, M, L. Tasks are reviewable feature units, not trivial chores.
 
 | ID | Title | Description | Depends | Files | Acceptance | Tests | Size | Status |
 |----|-------|-------------|---------|-------|------------|-------|------|--------|
-| DOCS-001 | Upload and storage | Multipart upload, type and size validation, random storage key, sha256, and versioning. | AUTH-003 | `api/v1/documents.py`, `services/storage.py` | Bad type, oversize, and non-UTF-8 files are rejected with clear errors. | `test_documents_upload.py` | M | ☐ |
-| DOCS-002 | OpenAPI parser | JSON and YAML, structural validation, local `$ref` resolution, alias rejection, and endpoint and schema extraction. | DOCS-001 | `ai/openapi.py` | Valid samples parse. Malformed and external `$ref` files are rejected. | `test_openapi_parser.py` | L | ☐ |
-| DOCS-003 | Markdown ingestion and index | Heading-based chunks and endpoint-heading detection. Persist endpoints and chunks. Processing status. | DOCS-002 | `ai/markdown.py`, `services/ingestion.py` | The status transitions to processed or failed with error details. | `test_ingestion.py` | M | ☐ |
-| DOCS-004 | Document and endpoint APIs | List and get documents, list endpoints, and enforce ownership. | DOCS-003 | `api/v1/documents.py`, `api/v1/endpoints.py` | Cross-tenant access returns 404. | `test_documents_api.py` | S | ☐ |
+| DOCS-001 | Upload and storage | Multipart upload, type and size validation, random storage key, sha256, and versioning. | AUTH-003 | `api/v1/documents.py`, `services/storage.py` | Bad type, oversize, and non-UTF-8 files are rejected with clear errors. | `test_documents_upload.py` | M | ☑ |
+| DOCS-002 | OpenAPI parser | JSON and YAML, structural validation, local `$ref` resolution, alias rejection, and endpoint and schema extraction. | DOCS-001 | `ai/openapi.py` | Valid samples parse. Malformed and external `$ref` files are rejected. | `test_openapi_parser.py` | L | ☑ |
+| DOCS-003 | Markdown ingestion and index | Heading-based chunks and endpoint-heading detection. Persist endpoints and chunks. Processing status. | DOCS-002 | `ai/markdown.py`, `services/ingestion.py` | The status transitions to processed or failed with error details. | `test_ingestion.py` | M | ☑ |
+| DOCS-004 | Document and endpoint APIs | List and get documents, list endpoints, and enforce ownership. | DOCS-003 | `api/v1/documents.py`, `api/v1/endpoints.py` | Cross-tenant access returns 404. | `test_documents_api.py` | S | ☑ |
 
 ## Phase 4 — AI orchestration and retrieval
 
