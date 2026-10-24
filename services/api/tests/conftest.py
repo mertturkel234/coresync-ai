@@ -13,7 +13,9 @@ import fakeredis
 import pytest
 from fastapi.testclient import TestClient
 
+import app.models  # noqa: F401
 from app.core.config import Settings
+from app.db.base import Base
 from app.main import create_app
 
 
@@ -37,5 +39,6 @@ def fake_redis() -> fakeredis.FakeRedis:
 @pytest.fixture
 def client(settings: Settings, fake_redis: fakeredis.FakeRedis) -> Iterator[TestClient]:
     app = create_app(settings, redis_client=fake_redis)
+    Base.metadata.create_all(app.state.engine)
     with TestClient(app) as c:
         yield c

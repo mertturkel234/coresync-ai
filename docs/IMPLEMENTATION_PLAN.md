@@ -9,7 +9,7 @@ Complexity: S, M, L. Tasks are reviewable feature units, not trivial chores.
 
 - [x] Phase 0 — Inspection and planning
 - [x] Phase 1 — Monorepo and infrastructure
-- [ ] Phase 2 — Data model and access control
+- [x] Phase 2 — Data model and access control
 - [ ] Phase 3 — Documentation ingestion
 - [ ] Phase 4 — AI orchestration and retrieval
 - [ ] Phase 5 — Sandbox credentials and controlled test execution
@@ -37,10 +37,10 @@ Complexity: S, M, L. Tasks are reviewable feature units, not trivial chores.
 
 | ID | Title | Description | Depends | Files | Acceptance | Tests | Size | Status |
 |----|-------|-------------|---------|-------|------------|-------|------|--------|
-| AUTH-001 | Models and migrations | All entities, an initial Alembic migration, and SQLite and PostgreSQL portability. | INFRA-001 | `models/`, `migrations/` | `alembic upgrade head` works on a fresh DB, and the model/migration diff is empty. | migration test | L | ☐ |
-| AUTH-002 | Registration and login | Argon2id, JWT, rate limiting, and audit events. | AUTH-001 | `security/`, `api/v1/auth.py` | Bad credentials return generic errors. | `test_auth.py` | M | ☐ |
-| AUTH-003 | Tenants, roles, projects | Project CRUD with membership checks, developer invites, and audit events. | AUTH-002 | `services/projects.py`, `api/v1/projects.py` | A cross-tenant request returns 404. Role rules are enforced. | `test_projects.py`, `test_tenant_isolation.py` | L | ☐ |
-| AUTH-004 | Central errors and versioning | Predictable error envelope with `request_id`, `/v1` prefix, and validation errors. | INFRA-001 | `core/errors.py` | Validation, 401, 403, 404, and 500 share one schema, and the 500 leaks nothing. | `test_errors.py` | S | ☐ |
+| AUTH-001 | Models and migrations | All entities, an initial Alembic migration, and SQLite and PostgreSQL portability. | INFRA-001 | `models/`, `migrations/` | `alembic upgrade head` works on a fresh DB, and the model/migration diff is empty. | migration test | L | ☑ |
+| AUTH-002 | Registration and login | Argon2id, JWT, rate limiting, and audit events. | AUTH-001 | `security/`, `api/v1/auth.py` | Bad credentials return generic errors. | `test_auth.py` | M | ☑ |
+| AUTH-003 | Tenants, roles, projects | Project CRUD with membership checks, developer invites, and audit events. | AUTH-002 | `services/projects.py`, `api/v1/projects.py` | A cross-tenant request returns 404. Role rules are enforced. | `test_projects.py`, `test_tenant_isolation.py` | L | ☑ |
+| AUTH-004 | Central errors and versioning | Predictable error envelope with `request_id`, `/v1` prefix, and validation errors. | INFRA-001 | `core/errors.py` | Validation, 401, 403, 404, and 500 share one schema, and the 500 leaks nothing. | `test_errors.py` | S | ☑ |
 
 ## Phase 3 — Documentation ingestion
 

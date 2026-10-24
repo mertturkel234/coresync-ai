@@ -10,9 +10,12 @@ import redis
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
+import app.models  # noqa: F401
 from app.api import health
+from app.api.v1.router import api_router
 from app.core.config import Settings, get_settings
 from app.core.errors import REQUEST_ID_HEADER, new_request_id, register_error_handlers
+from app.db.base import Base
 from app.db.session import build_engine, build_session_factory
 from app.security.ratelimit import build_rate_limiter, build_redis_client
 
@@ -27,6 +30,8 @@ def create_app(
 
     @asynccontextmanager
     async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
+        if settings.is_sqlite and settings.environment == "development":
+            Base.metadata.create_all(engine)
         yield
         engine.dispose()
 
@@ -74,4 +79,5 @@ def create_app(
     )
 
     app.include_router(health.router)
+    app.include_router(api_router)
     return app
